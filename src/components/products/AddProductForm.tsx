@@ -13,7 +13,6 @@ import Button from "../common/Button";
 import FormError from "../common/FormError";
 import FormInput from "../common/FormInput";
 import FormLabel from "../common/FormLabel";
-import FormTextArea from "../common/FormTextArea";
 import Header from "../common/Header";
 import ProductFormImagePreview from "./ProductFormImagePreview";
 import ProductFormImageUpload from "./ProductFormImageUpload";
@@ -132,7 +131,7 @@ const AddProductForm = (): JSX.Element => {
           className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         />
         <Button
-          text={ButtonEnum.ADD_PRODUCT}
+          text={ButtonEnum.SAVE}
           type="submit"
           disabled={!isValid}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"

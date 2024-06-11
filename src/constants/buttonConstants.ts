@@ -1,5 +1,5 @@
 export enum ButtonEnum {
-  ADD_PRODUCT = "Add product",
+  ADD_PRODUCT = "Add",
   SAVE = "Save",
   CANCEL = "Cancel",
   NEXT_PAGE = "Next Page",
