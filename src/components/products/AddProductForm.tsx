@@ -8,6 +8,7 @@ import {
 } from "../../constants/productsConstants";
 import { RoutesEnum } from "../../constants/routesConstants";
 import useAddProductForm from "../../hooks/useAddProductForm";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 import Button from "../common/Button";
 import FormError from "../common/FormError";
 import FormInput from "../common/FormInput";
@@ -33,6 +34,8 @@ const AddProductForm = (): JSX.Element => {
     nameLength,
     descriptionLength,
   } = useAddProductForm();
+
+  useDocumentTitle("Create New Product");
 
   return (
     <form

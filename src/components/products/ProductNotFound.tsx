@@ -1,10 +1,8 @@
 import { MdErrorOutline } from "react-icons/md";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import useDocumentTitle from "../../hooks/useDocumentTitle";
 import Button from "../common/Button";
 
 const ProductNotFound = (): JSX.Element => {
-  useDocumentTitle("Product Not Found");
   const navigate: NavigateFunction = useNavigate();
 
   return (

@@ -21,6 +21,7 @@ import {
   MAX_PRODUCT_DESCRIPTION_LENGTH,
   MAX_PRODUCT_NAME_LENGTH,
 } from "../../constants/productsConstants";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 
 type RouteParams = {
   productID: string;
@@ -30,6 +31,7 @@ const ProductDetails = (): JSX.Element => {
   const { productID } = useParams<RouteParams>();
   useFetchProduct(productID as string);
   const { product } = useAppSelector((state: RootState) => state.productList);
+  useDocumentTitle(`${product?.name} - Details`);
 
   const {
     register,
