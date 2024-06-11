@@ -31,7 +31,7 @@ const useProduct = () => {
   };
 
   const navigateToProductComponent = (productId: string): void => {
-    navigate(`/product/${productId}`);
+    navigate(`/products/${productId}`);
   };
 
   const productId: string = pathname.split("/")[2];

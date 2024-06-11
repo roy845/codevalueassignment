@@ -1,4 +1,8 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from "react-router-dom";
 import Home from "../pages/Home";
 import ProductDetails from "./products/ProductDetails";
 import AddProductForm from "./products/AddProductForm";
@@ -7,7 +11,7 @@ import { RoutesEnum } from "../constants/routesConstants";
 
 const router = createBrowserRouter([
   {
-    path: RoutesEnum.ROOT,
+    path: RoutesEnum.PRODUCTS,
     element: <Home />,
     children: [
       {
@@ -19,6 +23,10 @@ const router = createBrowserRouter([
         element: <ProductDetails />,
       },
     ],
+  },
+  {
+    path: RoutesEnum.ROOT,
+    element: <Navigate to={RoutesEnum.PRODUCTS} replace />,
   },
   {
     path: RoutesEnum.CATCH_ALL,
