@@ -8,10 +8,9 @@ import Header from "../common/Header";
 import ProductFormImagePreview from "./ProductFormImagePreview";
 import ProductFormImageUpload from "./ProductFormImageUpload";
 
-const AddProductForm = () => {
+const AddProductForm = (): JSX.Element => {
   const {
     register,
-    isValid,
     handleSubmit,
     errors,
     onSubmit,
@@ -114,7 +113,6 @@ const AddProductForm = () => {
           <Button
             text="Add Product"
             type="submit"
-            disabled={!isValid}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           />
         </div>

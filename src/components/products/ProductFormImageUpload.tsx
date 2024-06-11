@@ -1,5 +1,6 @@
 import React from "react";
 import { MdFileUpload } from "react-icons/md";
+import Tooltip from "../common/Tooltip";
 
 type AddProductFormImageUploadProps = {
   onFileIconClick: () => void;
@@ -11,14 +12,17 @@ const ProductFormImageUpload = ({
   onFileIconClick,
   fileInputRef,
   onImageChange,
-}: AddProductFormImageUploadProps) => {
+}: AddProductFormImageUploadProps): JSX.Element => {
   return (
     <>
-      <MdFileUpload
-        onClick={onFileIconClick}
-        className="cursor-pointer text-indigo-600"
-        size="1.5em"
-      />
+      <Tooltip content="Add product image">
+        <MdFileUpload
+          onClick={onFileIconClick}
+          className="cursor-pointer text-indigo-600"
+          size="1.5em"
+        />
+      </Tooltip>
+
       <input
         type="file"
         ref={fileInputRef}

@@ -7,6 +7,7 @@ import { useAppDispatch } from "../app/hooks";
 import { editProduct } from "../features/productList/productListSlice";
 import { dataUrlPattern, imagePrefix } from "../constants/regex/regex";
 import { NavigateFunction, useNavigate } from "react-router-dom";
+import useToast from "./useToast";
 
 const useEditProduct = (product: Product) => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -15,10 +16,10 @@ const useEditProduct = (product: Product) => {
     handleSubmit,
     setValue,
     reset,
-    formState: { errors, isValid, isSubmitSuccessful },
+    formState: { errors, isSubmitSuccessful },
   } = useForm<ProductData>({
     resolver: zodResolver(productSchema),
-    mode: "onChange",
+    mode: "all",
     defaultValues: {
       name: product?.name || "",
       price: product?.price || 0,
@@ -29,6 +30,8 @@ const useEditProduct = (product: Product) => {
   });
 
   const navigate: NavigateFunction = useNavigate();
+
+  const showToast = useToast();
 
   const fileInputRef: React.RefObject<HTMLInputElement> =
     useRef<HTMLInputElement>(null);
@@ -95,6 +98,12 @@ const useEditProduct = (product: Product) => {
       })
     );
 
+    showToast({
+      message: `Product ${data.name} updated successfully`,
+      type: "success",
+      options: { position: "bottom-left" },
+    });
+
     navigate("/");
   };
 
@@ -108,8 +117,6 @@ const useEditProduct = (product: Product) => {
     onImageChange,
     onFileIconClick,
     imagePreview,
-    isValid,
-
     navigate,
     handlePriceChange,
   };

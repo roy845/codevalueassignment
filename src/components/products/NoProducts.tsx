@@ -1,6 +1,6 @@
 import { FaBoxOpen } from "react-icons/fa";
 
-const NoProducts = () => {
+const NoProducts = (): JSX.Element => {
   return (
     <div className="flex flex-col items-center justify-center h-full text-white mr-5">
       <FaBoxOpen className="text-6xl mb-4" />

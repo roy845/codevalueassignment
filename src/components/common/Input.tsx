@@ -1,5 +1,3 @@
-import React from "react";
-
 interface InputProps<
   T extends string | number | readonly string[] | undefined
 > {

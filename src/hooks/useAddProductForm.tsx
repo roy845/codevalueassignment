@@ -7,6 +7,7 @@ import { dataUrlPattern, imagePrefix } from "../constants/regex/regex";
 import { v4 as uuidv4 } from "uuid";
 import { addProduct } from "../features/productList/productListSlice";
 import { NavigateFunction, useNavigate } from "react-router-dom";
+import useToast from "./useToast";
 
 const useAddProductForm = () => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -14,13 +15,15 @@ const useAddProductForm = () => {
     register,
     handleSubmit,
     setValue,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<ProductData>({
     mode: "all",
     resolver: zodResolver(productSchema),
   });
 
   const navigate: NavigateFunction = useNavigate();
+
+  const showToast = useToast();
 
   const fileInputRef: React.RefObject<HTMLInputElement> =
     useRef<HTMLInputElement>(null);
@@ -58,12 +61,14 @@ const useAddProductForm = () => {
     fileInputRef.current?.click();
   };
 
-  const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePriceChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     const value = event.target.value;
     setValue("price", Number(value));
   };
 
-  const onSubmit = (data: ProductData) => {
+  const onSubmit = (data: ProductData): void => {
     dispatch(
       addProduct({
         ...data,
@@ -71,13 +76,17 @@ const useAddProductForm = () => {
       })
     );
 
+    showToast({
+      message: `Product ${data.name} added successfully`,
+      type: "success",
+      options: { position: "bottom-left" },
+    });
+
     navigate("/");
-    console.log(data);
   };
 
   return {
     register,
-    isValid,
     handleSubmit,
     setValue,
     errors,

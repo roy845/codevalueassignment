@@ -1,4 +1,3 @@
-import React from "react";
 import { SelectOption } from "../../types/sortProductsOptions";
 
 type SelectProps<T> = {
@@ -17,7 +16,11 @@ const Select = <T extends string | number | readonly string[] | undefined>({
   className,
 }: SelectProps<T>): JSX.Element => {
   return (
-    <select value={value} onChange={handleChange} className={className}>
+    <select
+      value={value}
+      onChange={handleChange}
+      className={`${className} cursor-pointer`}
+    >
       <option value="" disabled>
         {placeholder}
       </option>

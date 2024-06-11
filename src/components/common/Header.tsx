@@ -1,11 +1,11 @@
 type HeaderProps = {
   title: string | undefined;
   sm?: boolean;
-  onClick?: () => void;
   cursor?: boolean;
+  onClick?: () => void;
 };
 
-const Header = ({ title, sm, onClick, cursor }: HeaderProps): JSX.Element => {
+const Header = ({ title, sm, cursor, onClick }: HeaderProps): JSX.Element => {
   return (
     <header
       onClick={onClick}

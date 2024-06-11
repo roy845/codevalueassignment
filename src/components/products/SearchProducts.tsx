@@ -1,7 +1,7 @@
 import useSearchTasks from "../../hooks/useSearchProducts";
 import Input from "../common/Input";
 
-const SearchProducts = () => {
+const SearchProducts = (): JSX.Element => {
   const { inputValue, handleChange } = useSearchTasks();
 
   return (

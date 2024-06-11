@@ -1,3 +1,5 @@
+import Tooltip from "../common/Tooltip";
+
 type ProductFormImagePreviewProps = {
   imagePreview: string | null;
   onFileIconClick: () => void;
@@ -6,15 +8,17 @@ type ProductFormImagePreviewProps = {
 const ProductFormImagePreview = ({
   imagePreview,
   onFileIconClick,
-}: ProductFormImagePreviewProps) => {
+}: ProductFormImagePreviewProps): JSX.Element => {
   return (
     <>
       {imagePreview && (
-        <img
-          onClick={onFileIconClick}
-          src={imagePreview}
-          className="w-32 h-32 mb-4 object-cover rounded cursor-pointer"
-        />
+        <Tooltip content="Add product image">
+          <img
+            onClick={onFileIconClick}
+            src={imagePreview}
+            className="w-32 h-32 mb-4 object-cover rounded cursor-pointer"
+          />
+        </Tooltip>
       )}
     </>
   );

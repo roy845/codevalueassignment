@@ -1,8 +1,9 @@
 import { Product } from "../types/productTypes";
+import { v4 as uuidv4 } from "uuid";
 
 export const INITIAL_PRODUCTS: Product[] = [
   {
-    id: "1",
+    id: uuidv4(),
     name: "Product 1",
     description: "Description for Product 1",
     price: 100,
@@ -11,7 +12,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     date: "2024-06-10T00:00:00.000Z",
   },
   {
-    id: "2",
+    id: uuidv4(),
     name: "Product 2",
     description: "Description for Product 2",
     price: 200,

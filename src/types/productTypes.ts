@@ -10,7 +10,6 @@ export type Product = {
 export type ProductListState = {
   products: Product[];
   product: Product | undefined;
-
   sortCriteria: "name" | "date_asc" | "date_desc";
   searchProducts: string;
   currentPage: number;

@@ -1,11 +1,12 @@
 import { ButtonType } from "../../types/buttonTypes";
 
 interface ButtonProps {
-  text: string;
+  text?: string;
   type: ButtonType;
   disabled?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
+  node?: React.ReactNode;
 }
 //
 const Button = ({
@@ -14,6 +15,7 @@ const Button = ({
   onClick,
   disabled,
   className,
+  node,
 }: ButtonProps): JSX.Element => {
   return (
     <button
@@ -24,6 +26,7 @@ const Button = ({
       onClick={onClick}
       disabled={disabled}
     >
+      {node && node}
       {text}
     </button>
   );

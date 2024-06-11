@@ -1,25 +1,8 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { RootState } from "../../app/store";
-import {
-  setCurrentPage,
-  selectTotalPages,
-} from "../../features/productList/productListSlice";
-import { useAppSelector } from "../../app/hooks";
 import Button from "../common/Button";
+import useProductsPagination from "../../hooks/useProductsPagination";
 
-const ProductsPagination: React.FC = () => {
-  const dispatch = useDispatch();
-  const totalPages = useAppSelector(selectTotalPages);
-  const currentPage = useAppSelector(
-    (state: RootState) => state.productList.currentPage
-  );
-
-  const handlePageChange = (page: number) => {
-    if (page > 0 && page <= totalPages) {
-      dispatch(setCurrentPage(page));
-    }
-  };
+const ProductsPagination = (): JSX.Element => {
+  const { currentPage, handlePageChange, totalPages } = useProductsPagination();
 
   return (
     <div className="flex justify-center items-center mt-4 space-x-4">

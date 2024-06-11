@@ -20,7 +20,7 @@ type RouteParams = {
   productID: string;
 };
 
-const ProductDetails = () => {
+const ProductDetails = (): JSX.Element => {
   const { productID } = useParams<RouteParams>();
   useFetchProduct(productID as string);
   const { product } = useAppSelector((state: RootState) => state.productList);
@@ -35,7 +35,6 @@ const ProductDetails = () => {
     onImageChange,
     onFileIconClick,
     imagePreview,
-    isValid,
     navigate,
   } = useEditProduct(product as Product);
 
@@ -135,7 +134,6 @@ const ProductDetails = () => {
           <Button
             text="Save"
             type="submit"
-            disabled={!isValid}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           />
         </div>

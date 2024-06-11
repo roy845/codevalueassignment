@@ -7,7 +7,6 @@ interface InputProps<TFieldValues extends FieldValues> {
   placeholder?: string;
   type?: React.HTMLInputTypeAttribute;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  options?: Array<{ label: string; value: string }>;
   className?: string;
   id: string;
 }
@@ -23,7 +22,9 @@ function FormInput<TFieldValues extends FieldValues>({
 }: InputProps<TFieldValues>): JSX.Element {
   return (
     <input
-      {...register(fieldName)}
+      {...register(fieldName, {
+        valueAsNumber: type === "number" ? true : undefined,
+      })}
       id={id}
       type={type}
       placeholder={placeholder}
