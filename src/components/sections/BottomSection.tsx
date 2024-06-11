@@ -11,8 +11,12 @@ const BottomSection = (): JSX.Element => {
   return (
     <>
       <div className="flex gap-4">
-        <ProductList />
-        <Outlet />
+        <div className="flex-none w-72">
+          <ProductList />
+        </div>
+        <div className="flex-grow">
+          <Outlet />
+        </div>
       </div>
       {products.length > ITEMS_PER_PAGE && <ProductsPagination />}
     </>
