@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ProductData, productSchema } from "../schemas/productSchema";
 import { useAppDispatch } from "../app/hooks";
 import { dataUrlPattern, imagePrefix } from "../constants/regex/regex";
@@ -9,18 +9,31 @@ import { addProduct } from "../features/productList/productListSlice";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import useToast, { ToastProps } from "./useToast";
 import { RoutesEnum } from "../constants/routesConstants";
+import { Subscription } from "react-hook-form/dist/utils/createSubject";
 
 const useAddProductForm = () => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [nameLength, setNameLength] = useState<number>(0);
+  const [descriptionLength, setDescriptionLength] = useState<number>(0);
+
   const {
     register,
     handleSubmit,
     setValue,
+    watch,
     formState: { errors },
   } = useForm<ProductData>({
     mode: "all",
     resolver: zodResolver(productSchema),
   });
+
+  const isNameValid: boolean = !errors.name;
+  const isPriceValid: boolean = !errors.price;
+  const isDateValid: boolean = !errors.date;
+  const isImageValid: boolean = !errors.image || !!imagePreview;
+
+  const isValid: boolean =
+    isNameValid && isPriceValid && isDateValid && isImageValid;
 
   const navigate: NavigateFunction = useNavigate();
 
@@ -87,13 +100,19 @@ const useAddProductForm = () => {
     navigate(RoutesEnum.ROOT);
   };
 
-  const isNameValid: boolean = !errors.name;
-  const isPriceValid: boolean = !errors.price;
-  const isDateValid: boolean = !errors.date;
-  const isImageValid: boolean = !errors.image || !!imagePreview;
+  useEffect(() => {
+    const subscription: Subscription = watch((value, { name }) => {
+      if (name === "name") {
+        setNameLength(value.name?.length || 0);
+      } else if (name === "description") {
+        setDescriptionLength(value.description?.length || 0);
+      }
+    });
 
-  const isValid: boolean =
-    isNameValid && isPriceValid && isDateValid && isImageValid;
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [watch]);
 
   return {
     register,
@@ -108,6 +127,8 @@ const useAddProductForm = () => {
     handlePriceChange,
     navigate,
     isValid,
+    nameLength,
+    descriptionLength,
   };
 };
 

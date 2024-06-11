@@ -21,3 +21,6 @@ export const INITIAL_PRODUCTS: Product[] = [
     date: "2024-06-10T00:00:00.000Z",
   },
 ];
+
+export const MAX_PRODUCT_NAME_LENGTH: number = 30;
+export const MAX_PRODUCT_DESCRIPTION_LENGTH: number = 200;

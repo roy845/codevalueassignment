@@ -9,6 +9,7 @@ interface InputProps<TFieldValues extends FieldValues> {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
   id: string;
+  maxLength?: number;
 }
 
 function FormInput<TFieldValues extends FieldValues>({
@@ -19,12 +20,14 @@ function FormInput<TFieldValues extends FieldValues>({
   type,
   onChange,
   className,
+  maxLength,
 }: InputProps<TFieldValues>): JSX.Element {
   return (
     <input
       {...register(fieldName, {
         valueAsNumber: type === "number" ? true : undefined,
       })}
+      maxLength={maxLength}
       id={id}
       type={type}
       placeholder={placeholder}

@@ -1,4 +1,4 @@
-import { NavigateFunction, useNavigate } from "react-router-dom";
+import { NavigateFunction, useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../app/hooks";
 import { deleteProduct } from "../features/productList/productListSlice";
 import useToast, { ToastProps } from "./useToast";
@@ -9,6 +9,8 @@ const useProduct = () => {
 
   const showToast: ({ message, options, type }: ToastProps) => void =
     useToast();
+
+  const { pathname } = useLocation();
 
   const deleteProductById = (productName: string, productId: string): void => {
     dispatch(deleteProduct(productId));
@@ -32,7 +34,10 @@ const useProduct = () => {
     navigate(`/product/${productId}`);
   };
 
+  const productId: string = pathname.split("/")[2];
+
   return {
+    productId,
     deleteProductById,
     handleDeleteClick,
     navigateToProductComponent,

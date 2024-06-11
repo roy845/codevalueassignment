@@ -5,6 +5,7 @@ interface InputProps<TFieldValues extends FieldValues> {
   register: UseFormRegister<TFieldValues>;
   fieldName: FieldPath<TFieldValues>;
   placeholder?: string;
+  maxLength?: number;
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   className?: string;
   id: string;
@@ -13,6 +14,7 @@ interface InputProps<TFieldValues extends FieldValues> {
 function FormTextArea<TFieldValues extends FieldValues>({
   id,
   register,
+  maxLength,
   fieldName,
   placeholder,
   onChange,
@@ -22,6 +24,7 @@ function FormTextArea<TFieldValues extends FieldValues>({
     <textarea
       {...register(fieldName)}
       id={id}
+      maxLength={maxLength}
       placeholder={placeholder}
       className={className}
       onChange={onChange}

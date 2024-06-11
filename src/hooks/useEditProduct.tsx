@@ -9,18 +9,24 @@ import { dataUrlPattern, imagePrefix } from "../constants/regex/regex";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import useToast, { ToastProps } from "./useToast";
 import { RoutesEnum } from "../constants/routesConstants";
+import { Subscription } from "react-hook-form/dist/utils/createSubject";
 
 const useEditProduct = (product: Product) => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [nameLength, setNameLength] = useState<number>(0);
+  const [descriptionLength, setDescriptionLength] = useState<number>(0);
+
   const {
     register,
     handleSubmit,
     setValue,
     reset,
+    watch,
     formState: { errors, isSubmitSuccessful },
   } = useForm<ProductData>({
-    resolver: zodResolver(productSchema),
     mode: "all",
+    resolver: zodResolver(productSchema),
+
     defaultValues: {
       name: product?.name || "",
       price: product?.price || 0,
@@ -29,6 +35,14 @@ const useEditProduct = (product: Product) => {
       image: product?.image || "",
     },
   });
+
+  const isNameValid: boolean = !errors.name;
+  const isPriceValid: boolean = !errors.price;
+  const isDateValid: boolean = !errors.date;
+  const isImageValid: boolean = !errors.image || !!imagePreview;
+
+  const isValid: boolean =
+    isNameValid && isPriceValid && isDateValid && isImageValid;
 
   const navigate: NavigateFunction = useNavigate();
 
@@ -86,6 +100,20 @@ const useEditProduct = (product: Product) => {
     }
   }, [isSubmitSuccessful, reset]);
 
+  useEffect(() => {
+    const subscription: Subscription = watch((value, { name }) => {
+      if (name === "name") {
+        setNameLength(value.name?.length || 0);
+      } else if (name === "description") {
+        setDescriptionLength(value.description?.length || 0);
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [watch]);
+
   const handlePriceChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
@@ -110,14 +138,6 @@ const useEditProduct = (product: Product) => {
     navigate(RoutesEnum.ROOT);
   };
 
-  const isNameValid: boolean = !errors.name;
-  const isPriceValid: boolean = !errors.price;
-  const isDateValid: boolean = !errors.date;
-  const isImageValid: boolean = !errors.image || !!imagePreview;
-
-  const isValid: boolean =
-    isNameValid && isPriceValid && isDateValid && isImageValid;
-
   return {
     register,
     handleSubmit,
@@ -131,6 +151,8 @@ const useEditProduct = (product: Product) => {
     navigate,
     handlePriceChange,
     isValid,
+    nameLength,
+    descriptionLength,
   };
 };
 

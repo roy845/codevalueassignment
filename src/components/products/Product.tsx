@@ -1,16 +1,15 @@
 import { Product as ProductType } from "../../types/productTypes";
 import Button from "../common/Button";
 import useProduct from "../../hooks/useProduct";
-import { useLocation } from "react-router-dom";
 
 type ProductProps = {
   product: ProductType;
 };
 
 const Product = ({ product }: ProductProps): JSX.Element => {
-  const { handleDeleteClick, navigateToProductComponent } = useProduct();
-  const { pathname } = useLocation();
-  const productId: string = pathname.split("/")[2];
+  const { navigateToProductComponent, handleDeleteClick, productId } =
+    useProduct();
+
   const isSelected: boolean = productId === product.id;
 
   return (
