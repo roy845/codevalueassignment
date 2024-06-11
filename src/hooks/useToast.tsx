@@ -2,7 +2,7 @@ import toast, { ToastOptions } from "react-hot-toast";
 
 type ToastType = "success" | "error";
 
-type ToastProps = {
+export type ToastProps = {
   message: string;
   options?: ToastOptions;
   type?: ToastType;

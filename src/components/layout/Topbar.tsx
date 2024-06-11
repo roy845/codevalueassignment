@@ -1,13 +1,21 @@
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import Header from "../common/Header";
 import Tooltip from "../common/Tooltip";
+import { HeaderEnum } from "../../constants/headerConstants";
+import { TooltipEnum } from "../../constants/tooltipConstants";
+import { RoutesEnum } from "../../constants/routesConstants";
 
 const Topbar = (): React.JSX.Element => {
   const navigate: NavigateFunction = useNavigate();
   return (
     <div className="bg-[#0d0c26] p-4 text-white flex items-center justify-between shadow-lg">
-      <Tooltip content="Home">
-        <Header cursor sm title="My Store" onClick={() => navigate("/")} />
+      <Tooltip content={TooltipEnum.HOME}>
+        <Header
+          cursor
+          sm
+          title={HeaderEnum.MainHeader}
+          onClick={() => navigate(RoutesEnum.ROOT)}
+        />
       </Tooltip>
     </div>
   );

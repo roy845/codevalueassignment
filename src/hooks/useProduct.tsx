@@ -1,15 +1,16 @@
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../app/hooks";
 import { deleteProduct } from "../features/productList/productListSlice";
-import useToast from "./useToast";
+import useToast, { ToastProps } from "./useToast";
 
 const useProduct = () => {
   const dispatch = useAppDispatch();
   const navigate: NavigateFunction = useNavigate();
 
-  const showToast = useToast();
+  const showToast: ({ message, options, type }: ToastProps) => void =
+    useToast();
 
-  const deleteProductById = (productName: string, productId: string) => {
+  const deleteProductById = (productName: string, productId: string): void => {
     dispatch(deleteProduct(productId));
     showToast({
       message: `Product ${productName} deleted successfully`,
@@ -18,16 +19,16 @@ const useProduct = () => {
     });
   };
 
-  const handleDeleteClick = (
+  const handleDeleteClick: (
     productName: string,
     productId: string,
     e: React.MouseEvent
-  ) => {
+  ) => void = (productName: string, productId: string, e: React.MouseEvent) => {
     e.stopPropagation();
     deleteProductById(productName, productId);
   };
 
-  const navigateToProductComponent = (productId: string) => {
+  const navigateToProductComponent = (productId: string): void => {
     navigate(`/product/${productId}`);
   };
 

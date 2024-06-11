@@ -7,7 +7,8 @@ import { useAppDispatch } from "../app/hooks";
 import { editProduct } from "../features/productList/productListSlice";
 import { dataUrlPattern, imagePrefix } from "../constants/regex/regex";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import useToast from "./useToast";
+import useToast, { ToastProps } from "./useToast";
+import { RoutesEnum } from "../constants/routesConstants";
 
 const useEditProduct = (product: Product) => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -31,7 +32,8 @@ const useEditProduct = (product: Product) => {
 
   const navigate: NavigateFunction = useNavigate();
 
-  const showToast = useToast();
+  const showToast: ({ message, options, type }: ToastProps) => void =
+    useToast();
 
   const fileInputRef: React.RefObject<HTMLInputElement> =
     useRef<HTMLInputElement>(null);
@@ -80,17 +82,18 @@ const useEditProduct = (product: Product) => {
 
   useEffect(() => {
     if (isSubmitSuccessful) {
-      console.log(isSubmitSuccessful);
       reset();
     }
   }, [isSubmitSuccessful, reset]);
 
-  const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePriceChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     const value = event.target.value;
     setValue("price", Number(value));
   };
 
-  const onSubmit = (data: ProductData) => {
+  const onSubmit = (data: ProductData): void => {
     dispatch(
       editProduct({
         ...data,
@@ -104,8 +107,16 @@ const useEditProduct = (product: Product) => {
       options: { position: "bottom-left" },
     });
 
-    navigate("/");
+    navigate(RoutesEnum.ROOT);
   };
+
+  const isNameValid: boolean = !errors.name;
+  const isPriceValid: boolean = !errors.price;
+  const isDateValid: boolean = !errors.date;
+  const isImageValid: boolean = !errors.image || !!imagePreview;
+
+  const isValid: boolean =
+    isNameValid && isPriceValid && isDateValid && isImageValid;
 
   return {
     register,
@@ -119,6 +130,7 @@ const useEditProduct = (product: Product) => {
     imagePreview,
     navigate,
     handlePriceChange,
+    isValid,
   };
 };
 

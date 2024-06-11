@@ -1,6 +1,9 @@
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import Button from "../common/Button";
 import { MdAdd } from "react-icons/md";
+import { ButtonEnum } from "../../constants/buttonConstants";
+import { IconEnum } from "../../constants/iconConstants";
+import { RoutesEnum } from "../../constants/routesConstants";
 
 const AddProductButton = (): JSX.Element => {
   const navigate: NavigateFunction = useNavigate();
@@ -9,15 +12,15 @@ const AddProductButton = (): JSX.Element => {
       <Button
         node={
           <span className="flex items-center">
-            <MdAdd className="mr-2 text-white" size={15} />
-            Add product
+            <MdAdd className="mr-2 text-white" size={IconEnum.ICON_SIZE} />
+            {ButtonEnum.ADD_PRODUCT}
           </span>
         }
         type="button"
         className={
           "bg-green-600 text-white hover:bg-green-700 focus:ring-indigo-500"
         }
-        onClick={() => navigate("/addProduct")}
+        onClick={() => navigate(RoutesEnum.ADD_PRODUCT)}
       />
     </div>
   );

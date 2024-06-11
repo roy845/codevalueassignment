@@ -5,7 +5,7 @@ import {
   setProductUndefined,
 } from "../features/productList/productListSlice";
 
-const useFetchProduct = (productId: string) => {
+const useFetchProduct = (productId: string): null => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {

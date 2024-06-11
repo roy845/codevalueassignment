@@ -7,7 +7,8 @@ import { dataUrlPattern, imagePrefix } from "../constants/regex/regex";
 import { v4 as uuidv4 } from "uuid";
 import { addProduct } from "../features/productList/productListSlice";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import useToast from "./useToast";
+import useToast, { ToastProps } from "./useToast";
+import { RoutesEnum } from "../constants/routesConstants";
 
 const useAddProductForm = () => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -23,7 +24,8 @@ const useAddProductForm = () => {
 
   const navigate: NavigateFunction = useNavigate();
 
-  const showToast = useToast();
+  const showToast: ({ message, options, type }: ToastProps) => void =
+    useToast();
 
   const fileInputRef: React.RefObject<HTMLInputElement> =
     useRef<HTMLInputElement>(null);
@@ -82,8 +84,16 @@ const useAddProductForm = () => {
       options: { position: "bottom-left" },
     });
 
-    navigate("/");
+    navigate(RoutesEnum.ROOT);
   };
+
+  const isNameValid: boolean = !errors.name;
+  const isPriceValid: boolean = !errors.price;
+  const isDateValid: boolean = !errors.date;
+  const isImageValid: boolean = !errors.image || !!imagePreview;
+
+  const isValid: boolean =
+    isNameValid && isPriceValid && isDateValid && isImageValid;
 
   return {
     register,
@@ -97,6 +107,7 @@ const useAddProductForm = () => {
     imagePreview,
     handlePriceChange,
     navigate,
+    isValid,
   };
 };
 

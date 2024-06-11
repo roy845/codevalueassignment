@@ -2,9 +2,10 @@ import { MdErrorOutline } from "react-icons/md";
 import useDocumentTitle from "../hooks/useDocumentTitle";
 import Button from "../components/common/Button";
 import { NavigateFunction, useNavigate } from "react-router-dom";
+import { MainLayoutEnum } from "../constants/mainLayoutConstants";
 
 const PageNotFound = (): JSX.Element => {
-  useDocumentTitle("Not Found");
+  useDocumentTitle(MainLayoutEnum.NOT_FOUND);
   const navigate: NavigateFunction = useNavigate();
 
   return (

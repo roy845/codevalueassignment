@@ -15,6 +15,9 @@ import ProductFormImageUpload from "./ProductFormImageUpload";
 import FormInput from "../common/FormInput";
 import FormLabel from "../common/FormLabel";
 import FormTextArea from "../common/FormTextArea";
+import { FormPlaceholderEnum } from "../../constants/formPlaceholderConstants";
+import { ButtonEnum } from "../../constants/buttonConstants";
+import { FormLabelEnum } from "../../constants/formLabelConstants";
 
 type RouteParams = {
   productID: string;
@@ -36,6 +39,7 @@ const ProductDetails = (): JSX.Element => {
     onFileIconClick,
     imagePreview,
     navigate,
+    isValid,
   } = useEditProduct(product as Product);
 
   if (!product) {
@@ -65,11 +69,11 @@ const ProductDetails = (): JSX.Element => {
 
       <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-lg">
         <div className="mb-4">
-          <FormLabel label="Name" />
+          <FormLabel label={FormLabelEnum.NAME} />
           <FormInput
             type="text"
             id="name"
-            placeholder="Enter product name"
+            placeholder={FormPlaceholderEnum.ENTER_NAME}
             register={register}
             fieldName="name"
             className="mt-1 block w-full px-3 py-2 border border-white bg-[#0d0c26] text-white rounded-md text-sm shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-left"
@@ -78,13 +82,13 @@ const ProductDetails = (): JSX.Element => {
           {errors.name && <FormError message={errors.name.message} />}
         </div>
         <div className="mb-4">
-          <FormLabel label="Price" />
+          <FormLabel label={FormLabelEnum.PRICE} />
 
           <div className="relative">
             <FormInput
               type="number"
               id="price"
-              placeholder="Enter product price"
+              placeholder={FormPlaceholderEnum.ENTER_PRICE}
               register={register}
               fieldName="price"
               onChange={handlePriceChange}
@@ -98,10 +102,11 @@ const ProductDetails = (): JSX.Element => {
           {errors.price && <FormError message={errors.price.message} />}
         </div>
         <div className="mb-4">
-          <FormLabel label="Description" />
+          <FormLabel label={FormLabelEnum.DESCRIPTION} />
 
           <FormTextArea
             id="description"
+            placeholder={FormPlaceholderEnum.ENTER_DESCRIPTION}
             register={register}
             fieldName="description"
           />
@@ -111,29 +116,29 @@ const ProductDetails = (): JSX.Element => {
           )}
         </div>
         <div className="mb-4">
-          <FormLabel label="Date" />
+          <FormLabel label={FormLabelEnum.DATE} />
 
           <FormInput
             type="date"
             id="date"
-            placeholder="Enter product date"
+            placeholder={FormPlaceholderEnum.ENTER_DATE}
             register={register}
             fieldName="date"
-            onChange={handlePriceChange}
             className="mt-1 block w-full px-3 py-2 border border-white bg-[#0d0c26] text-white rounded-md text-sm shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-left"
           />
           {errors.date && <FormError message={errors.date.message} />}
         </div>
         <div className="flex items-center justify-between">
           <Button
-            text="Cancel"
+            text={ButtonEnum.CANCEL}
             type="button"
             onClick={() => navigate("/")}
             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           />
           <Button
-            text="Save"
+            text={ButtonEnum.SAVE}
             type="submit"
+            disabled={!isValid}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           />
         </div>

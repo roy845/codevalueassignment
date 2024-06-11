@@ -7,12 +7,12 @@ import {
 
 const useProductsPagination = () => {
   const dispatch = useAppDispatch();
-  const totalPages = useAppSelector(selectTotalPages);
-  const currentPage = useAppSelector(
+  const totalPages: number = useAppSelector(selectTotalPages);
+  const currentPage: number = useAppSelector(
     (state: RootState) => state.productList.currentPage
   );
 
-  const handlePageChange = (page: number) => {
+  const handlePageChange = (page: number): void => {
     if (page > 0 && page <= totalPages) {
       dispatch(setCurrentPage(page));
     }
