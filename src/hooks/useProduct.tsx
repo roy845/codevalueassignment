@@ -38,7 +38,6 @@ const useProduct = () => {
 
   return {
     productId,
-    deleteProductById,
     handleDeleteClick,
     navigateToProductComponent,
   };
