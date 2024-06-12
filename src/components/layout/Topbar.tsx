@@ -7,6 +7,7 @@ import { RoutesEnum } from "../../constants/routesConstants";
 
 const Topbar = (): React.JSX.Element => {
   const navigate: NavigateFunction = useNavigate();
+
   return (
     <div className="bg-[#0d0c26] p-4 text-white flex items-center justify-between shadow-lg">
       <Tooltip content={TooltipEnum.HOME}>

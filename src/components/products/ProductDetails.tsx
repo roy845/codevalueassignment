@@ -12,7 +12,6 @@ import FormError from "../common/FormError";
 import ProductFormImageUpload from "./ProductFormImageUpload";
 import FormInput from "../common/FormInput";
 import FormLabel from "../common/FormLabel";
-import FormTextArea from "../common/FormTextArea";
 import { FormPlaceholderEnum } from "../../constants/formPlaceholderConstants";
 import { ButtonEnum } from "../../constants/buttonConstants";
 import { FormLabelEnum } from "../../constants/formLabelConstants";

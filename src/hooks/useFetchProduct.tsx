@@ -16,7 +16,7 @@ const useFetchProduct = (productId: string): null => {
     return () => {
       dispatch(setProductUndefined());
     };
-  }, [productId]);
+  }, [dispatch, productId]);
   return null;
 };
 

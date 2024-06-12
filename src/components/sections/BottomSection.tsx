@@ -6,7 +6,9 @@ import { useAppSelector } from "../../app/hooks";
 import { RootState } from "../../app/store";
 
 const BottomSection = (): JSX.Element => {
-  const { products } = useAppSelector((state: RootState) => state.productList);
+  const products = useAppSelector(
+    (state: RootState) => state.productList.products
+  );
 
   return (
     <>

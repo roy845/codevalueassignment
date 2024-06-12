@@ -5,6 +5,7 @@ import { HeaderEnum } from "../../constants/headerConstants";
 import {
   MAX_PRODUCT_DESCRIPTION_LENGTH,
   MAX_PRODUCT_NAME_LENGTH,
+  ProductEnum,
 } from "../../constants/productsConstants";
 import { RoutesEnum } from "../../constants/routesConstants";
 import useAddProductForm from "../../hooks/useAddProductForm";
@@ -34,7 +35,7 @@ const AddProductForm = (): JSX.Element => {
     descriptionLength,
   } = useAddProductForm();
 
-  useDocumentTitle("Create New Product");
+  useDocumentTitle(ProductEnum.CREATE_NEW_PRODUCT);
 
   return (
     <form

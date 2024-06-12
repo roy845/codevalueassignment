@@ -92,7 +92,15 @@ const useEditProduct = (product: Product) => {
     setImagePreview(product?.image);
     setValue("description", product?.description);
     setValue("date", product?.date?.split("T")[0]);
-  }, [product?.id, setValue]);
+  }, [
+    product?.id,
+    product?.date,
+    product?.description,
+    product?.image,
+    product?.name,
+    product?.price,
+    setValue,
+  ]);
 
   useEffect(() => {
     if (isSubmitSuccessful) {
@@ -122,20 +130,27 @@ const useEditProduct = (product: Product) => {
   };
 
   const onSubmit = (data: ProductData): void => {
-    dispatch(
-      editProduct({
-        ...data,
-        id: product.id,
-      })
-    );
-
-    showToast({
-      message: `Product ${data.name} updated successfully`,
-      type: "success",
-      options: { position: "bottom-left" },
-    });
-
-    navigate(RoutesEnum.ROOT);
+    try {
+      dispatch(
+        editProduct({
+          ...data,
+          id: product.id,
+        })
+      );
+      showToast({
+        message: `Product ${data.name} updated successfully`,
+        type: "success",
+        options: { position: "bottom-left" },
+      });
+    } catch (error: any) {
+      showToast({
+        message: error?.message,
+        type: "error",
+        options: { position: "bottom-left" },
+      });
+    } finally {
+      navigate(RoutesEnum.ROOT);
+    }
   };
 
   return {

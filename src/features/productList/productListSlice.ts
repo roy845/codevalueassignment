@@ -3,6 +3,7 @@ import { Product, ProductListState } from "../../types/productTypes";
 import { RootState } from "../../app/store";
 import { INITIAL_PRODUCTS } from "../../constants/productsConstants";
 import { ITEMS_PER_PAGE } from "../../constants/itemsPerPageConstants";
+import { SortCriteria } from "../../types/sortCriteriaTypes";
 
 const initialState: ProductListState = {
   products: INITIAL_PRODUCTS,
@@ -17,48 +18,47 @@ export const productListSlice = createSlice({
   initialState,
 
   reducers: {
-    addProduct: (state, action: PayloadAction<Product>) => {
+    addProduct: (state, action: PayloadAction<Product>): void => {
       state.products.push(action.payload);
     },
 
-    fetchProduct: (state, action: PayloadAction<string>) => {
+    fetchProduct: (state, action: PayloadAction<string>): void => {
       state.product = state.products.find(
         (product: Product) => product.id === action.payload
       );
     },
 
-    deleteProduct: (state, action: PayloadAction<string>) => {
+    deleteProduct: (state, action: PayloadAction<string>): void => {
       state.products = state.products.filter(
         (product) => product.id !== action.payload
       );
     },
 
-    editProduct: (state, action: PayloadAction<Product>) => {
+    editProduct: (state, action: PayloadAction<Product>): void => {
       const index: number = state.products.findIndex(
         (product) => product.id === action.payload.id
       );
 
       if (index !== -1) {
         state.products[index] = action.payload;
+      } else {
+        throw Error("Product does not exists");
       }
     },
 
-    setProductUndefined: (state) => {
+    setProductUndefined: (state): void => {
       state.product = undefined;
     },
 
-    setSearchProduct: (state, action: PayloadAction<string>) => {
+    setSearchProduct: (state, action: PayloadAction<string>): void => {
       state.searchProducts = action.payload;
     },
 
-    setSortCriteria: (
-      state,
-      action: PayloadAction<"name" | "date_asc" | "date_desc">
-    ) => {
+    setSortCriteria: (state, action: PayloadAction<SortCriteria>): void => {
       state.sortCriteria = action.payload;
     },
 
-    setCurrentPage: (state, action: PayloadAction<number>) => {
+    setCurrentPage: (state, action: PayloadAction<number>): void => {
       state.currentPage = action.payload;
     },
   },

@@ -24,3 +24,7 @@ export const INITIAL_PRODUCTS: Product[] = [
 
 export const MAX_PRODUCT_NAME_LENGTH: number = 30;
 export const MAX_PRODUCT_DESCRIPTION_LENGTH: number = 200;
+
+export enum ProductEnum {
+  CREATE_NEW_PRODUCT = "Create New Product",
+}
