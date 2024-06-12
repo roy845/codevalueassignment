@@ -17,6 +17,7 @@ const ProductFormImagePreview = ({
             onClick={onFileIconClick}
             src={imagePreview}
             className="w-32 h-32 mb-4 object-cover rounded cursor-pointer"
+            loading="lazy"
           />
         </Tooltip>
       )}

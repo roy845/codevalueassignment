@@ -63,10 +63,21 @@ const useAddProductForm = () => {
         if (isImage(base64String)) {
           setImagePreview(base64String);
           setValue("image", base64String);
+        } else {
+          showToast({
+            message: "Please select a valid image",
+            options: { position: "bottom-left" },
+            type: "error",
+          });
         }
       };
       reader.readAsDataURL(file);
     } else {
+      showToast({
+        message: "No Image file is selected. Please select an image file",
+        options: { position: "bottom-left" },
+        type: "error",
+      });
       setImagePreview(null);
       setValue("image", "");
     }
@@ -79,7 +90,7 @@ const useAddProductForm = () => {
   const handlePriceChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    const value = event.target.value;
+    const value: string = event.target.value;
     setValue("price", Number(value));
   };
 
@@ -125,7 +136,6 @@ const useAddProductForm = () => {
     onFileIconClick,
     imagePreview,
     handlePriceChange,
-    navigate,
     isValid,
     nameLength,
     descriptionLength,

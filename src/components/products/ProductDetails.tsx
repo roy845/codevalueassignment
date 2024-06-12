@@ -3,7 +3,6 @@ import { RootState } from "../../app/store";
 import useEditProduct from "../../hooks/useEditProduct";
 import useFetchProduct from "../../hooks/useFetchProduct";
 import { Product } from "../../types/productTypes";
-import Button from "../common/Button";
 import Header from "../common/Header";
 import { useParams } from "react-router-dom";
 import ProductNotFound from "./ProductNotFound";
@@ -13,14 +12,14 @@ import ProductFormImageUpload from "./ProductFormImageUpload";
 import FormInput from "../common/FormInput";
 import FormLabel from "../common/FormLabel";
 import { FormPlaceholderEnum } from "../../constants/formPlaceholderConstants";
-import { ButtonEnum } from "../../constants/buttonConstants";
 import { FormLabelEnum } from "../../constants/formLabelConstants";
-import { RoutesEnum } from "../../constants/routesConstants";
 import {
   MAX_PRODUCT_DESCRIPTION_LENGTH,
   MAX_PRODUCT_NAME_LENGTH,
 } from "../../constants/productsConstants";
 import useDocumentTitle from "../../hooks/useDocumentTitle";
+import CharacterCount from "./CharacterCount";
+import AddProductFormButtons from "./AddProductFormButtons";
 
 type RouteParams = {
   productID: string;
@@ -42,7 +41,6 @@ const ProductDetails = (): JSX.Element => {
     onImageChange,
     onFileIconClick,
     imagePreview,
-    navigate,
     isValid,
     nameLength,
     descriptionLength,
@@ -86,9 +84,7 @@ const ProductDetails = (): JSX.Element => {
           placeholder={FormPlaceholderEnum.ENTER_NAME}
           className="mt-1 block w-full px-3 py-2 border border-white bg-[#0d0c26] text-white rounded-md text-sm shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-left"
         />
-        <p className="text-sm text-end text-white-500">
-          {nameLength}/{MAX_PRODUCT_NAME_LENGTH}
-        </p>
+        <CharacterCount current={nameLength} limit={MAX_PRODUCT_NAME_LENGTH} />
         {errors.name && <FormError message={errors.name.message} />}
       </div>
       <div className="mb-4">
@@ -121,9 +117,10 @@ const ProductDetails = (): JSX.Element => {
           placeholder={FormPlaceholderEnum.ENTER_DESCRIPTION}
           className="mt-1 block w-full px-3 py-2 border border-white bg-[#0d0c26] text-white rounded-md text-sm shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-left"
         />
-        <p className="text-sm text-end text-white-500">
-          {descriptionLength}/{MAX_PRODUCT_DESCRIPTION_LENGTH}
-        </p>
+        <CharacterCount
+          current={descriptionLength}
+          limit={MAX_PRODUCT_DESCRIPTION_LENGTH}
+        />
         {errors.description && (
           <FormError message={errors.description.message} />
         )}
@@ -141,20 +138,7 @@ const ProductDetails = (): JSX.Element => {
         />
         {errors.date && <FormError message={errors.date.message} />}
       </div>
-      <div className="flex items-center justify-between">
-        <Button
-          text={ButtonEnum.CANCEL}
-          type="button"
-          onClick={() => navigate(RoutesEnum.ROOT)}
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        />
-        <Button
-          text={ButtonEnum.SAVE}
-          type="submit"
-          disabled={!isValid}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        />
-      </div>
+      <AddProductFormButtons disabled={!isValid} />
     </form>
   );
 };

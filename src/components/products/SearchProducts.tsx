@@ -1,8 +1,8 @@
-import useSearchTasks from "../../hooks/useSearchProducts";
+import useSearchProducts from "../../hooks/useSearchProducts";
 import Input from "../common/Input";
 
 const SearchProducts = (): JSX.Element => {
-  const { inputValue, handleChange } = useSearchTasks();
+  const { inputValue, handleChange } = useSearchProducts();
 
   return (
     <div className="w-full max-w-xs mx-auto mb-5">

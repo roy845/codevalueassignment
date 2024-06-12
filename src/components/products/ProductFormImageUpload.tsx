@@ -25,9 +25,10 @@ const ProductFormImageUpload = ({
 
       <input
         type="file"
+        accept="image/*"
         ref={fileInputRef}
         onChange={onImageChange}
-        style={{ display: "none" }}
+        className="hidden"
       />
     </>
   );

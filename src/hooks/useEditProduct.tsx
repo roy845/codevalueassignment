@@ -125,7 +125,7 @@ const useEditProduct = (product: Product) => {
   const handlePriceChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    const value = event.target.value;
+    const value: string = event.target.value;
     setValue("price", Number(value));
   };
 
@@ -163,7 +163,6 @@ const useEditProduct = (product: Product) => {
     onImageChange,
     onFileIconClick,
     imagePreview,
-    navigate,
     handlePriceChange,
     isValid,
     nameLength,
