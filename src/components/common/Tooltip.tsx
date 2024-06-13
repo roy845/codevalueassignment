@@ -5,12 +5,19 @@ type TooltipProps = {
   content: string;
 };
 
+// If you're using children, you should do it like this:
+type NewTooltipProps = React.PropsWithChildren<{
+  content: string;
+}>;
+
 const Tooltip: React.FC<TooltipProps> = ({
   children,
   content,
 }): React.JSX.Element => {
+  // Why not create a custom hook for this? useActivate or useToggle would be nice
   const [showTooltip, setShowTooltip] = useState<boolean>(false);
 
+  // You should look on how to implement proper tooltips. It's more complicated from this.
   return (
     <div
       className="relative flex items-center"

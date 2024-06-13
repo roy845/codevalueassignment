@@ -14,7 +14,8 @@ const ElementNotFound = ({ element }: ElementNotFoundProps): JSX.Element => {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-[#0d0c22]">
       <MdErrorOutline className="text-6xl text-red-500" />
-      <h1 className="text-2xl font-semibold text-white mt-4">
+      {/* Why is it h1 here? */}
+      <h1 className="text-2xl font-semibold text-white mt-4"> 
         {element} Not Found
       </h1>
       <p className="text-white mb-4">

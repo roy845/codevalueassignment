@@ -3,11 +3,14 @@ interface InputProps<
 > {
   placeholder?: string;
   type?: React.HTMLInputTypeAttribute;
+  // why call it e and not event? Don't do short names like that
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
   value: T;
 }
 
+// You could do the component as I shown for the Button.tsx component.
+// You could just use the props as: React.FC<React.InputHTMLAttributes<HTMLInputElement>> and that's it.
 function Input<T extends string | number | readonly string[] | undefined>({
   placeholder,
   value,

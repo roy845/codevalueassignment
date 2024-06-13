@@ -34,6 +34,7 @@ const ProductDetails = (): JSX.Element => {
     descriptionLength,
   } = useProductForm(product as Product);
 
+  // I would make a function isNullOrUndefined and use it here
   if (!product) {
     return (
       <div className="mt-4">

@@ -3,6 +3,7 @@ import productListReducer from "../features/productList/productListSlice";
 import { Persistor, persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
+// why do you even need to use redux in this project? Feels useless
 const persistProductListConfig = {
   key: "products",
   storage,

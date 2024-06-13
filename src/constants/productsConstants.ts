@@ -1,6 +1,7 @@
 import { Product } from "../types/productTypes";
 import { v4 as uuidv4 } from "uuid";
 
+// are these mocks? if so, why are they here? they should be in mocks folder
 export const INITIAL_PRODUCTS: Product[] = [
   {
     id: uuidv4(),
@@ -25,6 +26,7 @@ export const INITIAL_PRODUCTS: Product[] = [
 export const MAX_PRODUCT_NAME_LENGTH: number = 30;
 export const MAX_PRODUCT_DESCRIPTION_LENGTH: number = 200;
 
+// what does this enum mean? what is the purpose of this enum? The name is sure not descriptive.
 export enum ProductEnum {
   CREATE_NEW_PRODUCT = "Create New Product",
   PRODUCT = "Product",

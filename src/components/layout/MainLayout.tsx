@@ -3,7 +3,7 @@ import Topbar from "./Topbar";
 import Footer from "./Footer";
 
 type LayoutProps = {
-  children?: React.ReactNode;
+  children?: React.ReactNode; // could use PropsWithChildren instead
   title?: string;
   description?: string;
   keywords?: string;

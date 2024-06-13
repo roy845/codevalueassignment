@@ -1,5 +1,5 @@
 type FormErrorProps = {
-  message: string | undefined;
+  message: string | undefined; // I would pass it as children
 };
 
 const FormError = ({ message }: FormErrorProps): JSX.Element => {
@@ -7,3 +7,15 @@ const FormError = ({ message }: FormErrorProps): JSX.Element => {
 };
 
 export default FormError;
+
+// When you make a component, keep on the following structure:
+
+type ComponentTestProps = {
+
+}
+
+const ComponentTest: React.FC<ComponentTestProps> = ({}) => {
+  return (
+    <></>
+  )
+}

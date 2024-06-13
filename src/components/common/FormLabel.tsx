@@ -1,5 +1,5 @@
 type FormLabelProps = {
-  label: string;
+  label: string; // I would pass it as children
 };
 
 const FormLabel = ({ label }: FormLabelProps): JSX.Element => {

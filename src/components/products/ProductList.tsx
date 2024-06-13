@@ -8,6 +8,7 @@ import { ProductEnum } from "../../constants/productsConstants";
 const ProductList = (): JSX.Element => {
   const products: ProductType[] = useAppSelector(selectPaginatedProducts);
 
+  // I would make an isEmptyArray function and use it here
   if (products.length === 0) {
     return <NoElements elements={ProductEnum.PRODUCTS} />;
   }

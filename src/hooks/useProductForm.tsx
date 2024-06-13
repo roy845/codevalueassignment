@@ -15,6 +15,7 @@ import { RoutesEnum } from "../constants/routesConstants";
 import { Subscription } from "react-hook-form/dist/utils/createSubject";
 import { v4 as uuidv4 } from "uuid";
 
+// this is is too big.
 const useProductForm = (product?: Product) => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [nameLength, setNameLength] = useState<number>(0);
@@ -123,6 +124,7 @@ const useProductForm = (product?: Product) => {
     }
   }, [isSubmitSuccessful, reset]);
 
+  // That's a very bad pratice of using useEffect with watch
   useEffect(() => {
     const subscription: Subscription = watch((value, { name }) => {
       if (name === "name") {
@@ -145,7 +147,7 @@ const useProductForm = (product?: Product) => {
   };
 
   const onSubmit = (data: ProductData): void => {
-    if (product) {
+    if (product) { // usually if you have if-else this way, should indicate of code smell.
       try {
         dispatch(
           editProduct({
@@ -158,9 +160,10 @@ const useProductForm = (product?: Product) => {
           type: "success",
           options: { position: "bottom-left" },
         });
+        // why do you have any in the code?
       } catch (error: any) {
         showToast({
-          message: error?.message,
+          message: error?.message, // how do you know that error has message property?
           type: "error",
           options: { position: "bottom-left" },
         });

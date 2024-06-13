@@ -12,6 +12,7 @@ const ProductFormImagePreview = ({
 }: ProductFormImagePreviewProps): JSX.Element => {
   return (
     <>
+    {/* I would make isNotNullOrUndefined function and use it here */}
       {imagePreview && (
         <Tooltip content={TooltipEnum.ADD_PRODUCT_IMAGE}>
           <img

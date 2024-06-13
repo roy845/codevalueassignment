@@ -6,6 +6,7 @@ import { TooltipEnum } from "../../constants/tooltipConstants";
 import { RoutesEnum } from "../../constants/routesConstants";
 
 const Topbar = (): React.JSX.Element => {
+  // you don't need to define the type, it's already inferred from the hook
   const navigate: NavigateFunction = useNavigate();
 
   return (

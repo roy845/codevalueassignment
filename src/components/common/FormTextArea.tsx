@@ -10,6 +10,8 @@ interface InputProps<TFieldValues extends FieldValues> {
   id: string;
 }
 
+// You don't need to create a whole component just for form. textarea is already a component that's
+// ready to use as part of form. 
 function FormTextArea<TFieldValues extends FieldValues>({
   id,
   register,

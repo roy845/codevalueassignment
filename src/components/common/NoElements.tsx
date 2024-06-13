@@ -4,6 +4,7 @@ type NoElementsProps = {
   elements: string;
 };
 
+// You should name this better...
 const NoElements = ({ elements }: NoElementsProps): JSX.Element => {
   return (
     <div className="flex flex-col items-center justify-center h-full text-white mr-5">

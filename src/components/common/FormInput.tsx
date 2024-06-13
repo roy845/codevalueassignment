@@ -11,6 +11,8 @@ interface InputProps<TFieldValues extends FieldValues> {
   maxLength?: number;
 }
 
+// First, you already have Input component so you can use that instead,
+// Second, why do you put the register over here? I don't think you understand the concept of react-hook-form
 function FormInput<TFieldValues extends FieldValues>({
   id,
   register,

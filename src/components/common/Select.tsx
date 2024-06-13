@@ -8,6 +8,7 @@ type SelectProps<T> = {
   options: SelectOption[];
 };
 
+// Same comments as for the Button.tsx and Input.tsx
 const Select = <T extends string | number | readonly string[] | undefined>({
   value,
   handleChange,
@@ -21,6 +22,7 @@ const Select = <T extends string | number | readonly string[] | undefined>({
       onChange={handleChange}
       className={`${className} cursor-pointer`}
     >
+      {/* I would get the options as children to give the developer maximum extensions */}
       <option value="" disabled>
         {placeholder}
       </option>
