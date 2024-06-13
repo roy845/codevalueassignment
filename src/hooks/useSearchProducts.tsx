@@ -4,7 +4,9 @@ import useDebounce from "./useDebounce";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 
 const useSearchProducts = () => {
-  const { searchProducts } = useAppSelector((state) => state.productList);
+  const searchProducts = useAppSelector(
+    (state) => state.productList.searchProducts
+  );
   const dispatch = useAppDispatch();
   const [inputValue, setInputValue] = useState<string>(searchProducts);
 
