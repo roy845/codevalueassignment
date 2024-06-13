@@ -1,14 +1,18 @@
 import { PayloadAction, createSlice, createSelector } from "@reduxjs/toolkit";
 import { Product, ProductListState } from "../../types/productTypes";
 import { RootState } from "../../app/store";
-import { INITIAL_PRODUCTS } from "../../constants/productsConstants";
+import {
+  INITIAL_PRODUCTS,
+  ProductEnum,
+} from "../../constants/productsConstants";
 import { ITEMS_PER_PAGE } from "../../constants/itemsPerPageConstants";
 import { SortCriteria } from "../../types/sortCriteriaTypes";
+import { StringEnum } from "../../constants/stringConstants";
 
 const initialState: ProductListState = {
   products: INITIAL_PRODUCTS,
   product: undefined,
-  searchProducts: "",
+  searchProducts: StringEnum.EMPTY,
   sortCriteria: "name",
   currentPage: 1,
 };
@@ -42,7 +46,7 @@ export const productListSlice = createSlice({
       if (index !== -1) {
         state.products[index] = action.payload;
       } else {
-        throw Error("Product does not exists");
+        throw Error(ProductEnum.PRODUCT_DOES_NOT_EXISTS);
       }
     },
 

@@ -29,4 +29,5 @@ export enum ProductEnum {
   CREATE_NEW_PRODUCT = "Create New Product",
   PRODUCT = "Product",
   PRODUCTS = "products",
+  PRODUCT_DOES_NOT_EXISTS = "Product does not exists",
 }
