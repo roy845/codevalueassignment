@@ -1,5 +1,3 @@
-// src/components/common/ProductForm.tsx
-
 import { FormLabelEnum } from "../../constants/formLabelConstants";
 import { FormPlaceholderEnum } from "../../constants/formPlaceholderConstants";
 import {
