@@ -4,7 +4,6 @@ import useFetchProduct from "../../hooks/useFetchProduct";
 import { Product } from "../../types/productTypes";
 import { useParams } from "react-router-dom";
 import ProductNotFound from "./ProductNotFound";
-import { ProductEnum } from "../../constants/productsConstants";
 import useDocumentTitle from "../../hooks/useDocumentTitle";
 import ProductForm from "./ProductForm";
 import useProductForm from "../../hooks/useProductForm";
@@ -44,7 +43,7 @@ const ProductDetails = (): JSX.Element => {
 
   return (
     <ProductForm
-      title={ProductEnum.CREATE_NEW_PRODUCT}
+      title={`${product.name} Details`}
       register={register}
       handleSubmit={handleSubmit}
       errors={errors}
