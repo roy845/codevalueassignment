@@ -1,4 +1,4 @@
-import AddProductButton from "../products/AddProduct";
+import AddProductButton from "../products/AddProductButton";
 import SearchProducts from "../products/SearchProducts";
 import SortProducts from "../products/SortProducts";
 

@@ -27,4 +27,6 @@ export const MAX_PRODUCT_DESCRIPTION_LENGTH: number = 200;
 
 export enum ProductEnum {
   CREATE_NEW_PRODUCT = "Create New Product",
+  PRODUCT = "Product",
+  PRODUCTS = "products",
 }

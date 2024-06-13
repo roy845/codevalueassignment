@@ -2,13 +2,14 @@ import { Product as ProductType } from "../../types/productTypes";
 import Product from "./Product";
 import { useAppSelector } from "../../app/hooks";
 import { selectPaginatedProducts } from "../../features/productList/productListSlice";
-import NoProducts from "./NoProducts";
+import NoElements from "../common/NoElements";
+import { ProductEnum } from "../../constants/productsConstants";
 
 const ProductList = (): JSX.Element => {
-  const products = useAppSelector(selectPaginatedProducts);
+  const products: ProductType[] = useAppSelector(selectPaginatedProducts);
 
   if (products.length === 0) {
-    return <NoProducts />;
+    return <NoElements elements={ProductEnum.PRODUCTS} />;
   }
 
   return (

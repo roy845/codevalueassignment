@@ -1,3 +1,4 @@
+import { TooltipEnum } from "../../constants/tooltipConstants";
 import Tooltip from "../common/Tooltip";
 
 type ProductFormImagePreviewProps = {
@@ -12,10 +13,11 @@ const ProductFormImagePreview = ({
   return (
     <>
       {imagePreview && (
-        <Tooltip content="Add product image">
+        <Tooltip content={TooltipEnum.ADD_PRODUCT_IMAGE}>
           <img
             onClick={onFileIconClick}
             src={imagePreview}
+            alt=""
             className="w-32 h-32 mb-4 object-cover rounded cursor-pointer"
             loading="lazy"
           />

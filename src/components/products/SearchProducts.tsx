@@ -1,3 +1,4 @@
+import { FormPlaceholderEnum } from "../../constants/formPlaceholderConstants";
 import useSearchProducts from "../../hooks/useSearchProducts";
 import Input from "../common/Input";
 
@@ -10,7 +11,7 @@ const SearchProducts = (): JSX.Element => {
         type="text"
         value={inputValue}
         onChange={handleChange}
-        placeholder="Search products.."
+        placeholder={FormPlaceholderEnum.SEARCH_PRODUCTS}
       />
     </div>
   );

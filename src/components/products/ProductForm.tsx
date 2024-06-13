@@ -9,7 +9,7 @@ import FormError from "../common/FormError";
 import FormInput from "../common/FormInput";
 import FormLabel from "../common/FormLabel";
 import Header from "../common/Header";
-import AddProductFormButtons from "./AddProductFormButtons";
+import ProductFormButtons from "./ProductFormButtons";
 import CharacterCount from "./CharacterCount";
 import ProductFormImagePreview from "./ProductFormImagePreview";
 import ProductFormImageUpload from "./ProductFormImageUpload";
@@ -53,9 +53,9 @@ const ProductForm = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-4 w-full max-w-md"
+      className="space-y-4 w-full max-w-md p-4 rounded-md"
     >
-      <Header sm title={title} />
+      <Header cursor sm title={title} />
       <section className="flex flex-col items-center justify-center">
         <ProductFormImagePreview
           imagePreview={imagePreview}
@@ -66,7 +66,7 @@ const ProductForm = ({
           fileInputRef={fileInputRef}
           onImageChange={onImageChange}
         />
-        {errors.image && <FormError message={(errors.image as any).message} />}
+        {errors.image && <FormError message={errors.image.message} />}
       </section>
       <div className="mb-4">
         <FormLabel label={FormLabelEnum.NAME} />
@@ -79,7 +79,7 @@ const ProductForm = ({
           className="mt-1 block w-full px-3 py-2 border border-white bg-[#0d0c26] text-white rounded-md text-sm shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-left"
         />
         <CharacterCount current={nameLength} limit={MAX_PRODUCT_NAME_LENGTH} />
-        {errors.name && <FormError message={(errors.name as any).message} />}
+        {errors.name && <FormError message={errors.name.message} />}
       </div>
       <div className="mb-4">
         <FormLabel label={FormLabelEnum.PRICE} />
@@ -97,7 +97,7 @@ const ProductForm = ({
             $
           </span>
         </div>
-        {errors.price && <FormError message={(errors.price as any).message} />}
+        {errors.price && <FormError message={errors.price.message} />}
       </div>
       <div className="mb-4">
         <FormLabel label={FormLabelEnum.DESCRIPTION} />
@@ -113,7 +113,7 @@ const ProductForm = ({
           limit={MAX_PRODUCT_DESCRIPTION_LENGTH}
         />
         {errors.description && (
-          <FormError message={(errors.description as any).message} />
+          <FormError message={errors.description.message} />
         )}
       </div>
       <div className="mb-4">
@@ -126,9 +126,9 @@ const ProductForm = ({
           fieldName="date"
           className="mt-1 block w-full px-3 py-2 border border-white bg-[#0d0c26] text-white rounded-md text-sm shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-left"
         />
-        {errors.date && <FormError message={(errors.date as any).message} />}
+        {errors.date && <FormError message={errors.date.message} />}
       </div>
-      <AddProductFormButtons disabled={!isValid} />
+      <ProductFormButtons disabled={!isValid} />
     </form>
   );
 };

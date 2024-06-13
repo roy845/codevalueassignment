@@ -86,11 +86,13 @@ export const selectFilteredProducts = createSelector(
       );
     } else if (sortCriteria === "date_desc") {
       filteredProducts = filteredProducts.sort(
-        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+        (a: Product, b: Product) =>
+          new Date(b.date).getTime() - new Date(a.date).getTime()
       );
     } else if (sortCriteria === "date_asc") {
       filteredProducts = filteredProducts.sort(
-        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+        (a: Product, b: Product) =>
+          new Date(a.date).getTime() - new Date(b.date).getTime()
       );
     }
     return filteredProducts;

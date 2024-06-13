@@ -3,10 +3,11 @@ import { RootState } from "../../app/store";
 import useFetchProduct from "../../hooks/useFetchProduct";
 import { Product } from "../../types/productTypes";
 import { useParams } from "react-router-dom";
-import ProductNotFound from "./ProductNotFound";
+import ElementNotFound from "../common/ElementNotFound";
 import useDocumentTitle from "../../hooks/useDocumentTitle";
 import ProductForm from "./ProductForm";
 import useProductForm from "../../hooks/useProductForm";
+import { ProductEnum } from "../../constants/productsConstants";
 
 type RouteParams = {
   productID: string;
@@ -36,7 +37,7 @@ const ProductDetails = (): JSX.Element => {
   if (!product) {
     return (
       <div className="mt-4">
-        <ProductNotFound />
+        <ElementNotFound element={ProductEnum.PRODUCT} />
       </div>
     );
   }

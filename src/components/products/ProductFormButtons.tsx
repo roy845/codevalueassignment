@@ -3,11 +3,11 @@ import { ButtonEnum } from "../../constants/buttonConstants";
 import { RoutesEnum } from "../../constants/routesConstants";
 import Button from "../common/Button";
 
-type AddProductFormButtonsProps = {
-  disabled: boolean;
+type ProductFormButtonsProps = {
+  disabled?: boolean;
 };
 
-const AddProductFormButtons = ({ disabled }: AddProductFormButtonsProps) => {
+const ProductFormButtons = ({ disabled }: ProductFormButtonsProps) => {
   const navigate: NavigateFunction = useNavigate();
   return (
     <div className="flex items-center justify-between">
@@ -17,6 +17,7 @@ const AddProductFormButtons = ({ disabled }: AddProductFormButtonsProps) => {
         onClick={() => navigate(RoutesEnum.ROOT)}
         className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
       />
+
       <Button
         text={ButtonEnum.SAVE}
         type="submit"
@@ -27,4 +28,4 @@ const AddProductFormButtons = ({ disabled }: AddProductFormButtonsProps) => {
   );
 };
 
-export default AddProductFormButtons;
+export default ProductFormButtons;

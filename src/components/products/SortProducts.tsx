@@ -1,3 +1,4 @@
+import { FormPlaceholderEnum } from "../../constants/formPlaceholderConstants";
 import { sortProductsOptions } from "../../constants/sortProductsConstants";
 import useSortProducts from "../../hooks/useSortProducts";
 import Select from "../common/Select";
@@ -14,7 +15,7 @@ const SortProducts = (): JSX.Element => {
           options={sortProductsOptions}
           handleChange={handleSortChange}
           value={sortCriteria}
-          placeholder="Select sort criteria"
+          placeholder={FormPlaceholderEnum.SELECT_SORT_CRITERIA}
         />
       </Tooltip>
     </div>

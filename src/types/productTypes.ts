@@ -1,3 +1,5 @@
+import { SortCriteria } from "./sortCriteriaTypes";
+
 export type Product = {
   id: string;
   name: string;
@@ -10,7 +12,7 @@ export type Product = {
 export type ProductListState = {
   products: Product[];
   product: Product | undefined;
-  sortCriteria: "name" | "date_asc" | "date_desc";
+  sortCriteria: SortCriteria;
   searchProducts: string;
   currentPage: number;
 };

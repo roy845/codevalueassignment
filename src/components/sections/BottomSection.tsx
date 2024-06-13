@@ -4,9 +4,10 @@ import ProductsPagination from "../products/ProductsPagination";
 import { ITEMS_PER_PAGE } from "../../constants/itemsPerPageConstants";
 import { useAppSelector } from "../../app/hooks";
 import { RootState } from "../../app/store";
+import { Product } from "../../types/productTypes";
 
 const BottomSection = (): JSX.Element => {
-  const products = useAppSelector(
+  const products: Product[] = useAppSelector(
     (state: RootState) => state.productList.products
   );
 
